@@ -4,3 +4,9 @@
   <%= link_to 'All articles', articles_path %>
   <%= link_to 'Edit', edit_article_path(@article) %>
 </div>
+<h2>Comments</h2>
+<ul>
+  <%= render @article.comments %>
+</ul>
+<h2>Add a comment:</h2>
+<%= render 'comments/form', article: @article %>
