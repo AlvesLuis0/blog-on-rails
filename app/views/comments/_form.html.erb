@@ -2,20 +2,14 @@
   <div>
     <%= form.label :commenter %>
     <%= form.text_field :commenter %>
-    <% article.errors.full_messages_for(:commenter).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
   </div>
   <div>
     <%= form.label :body %>
     <%= form.text_area :body %>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+  </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
   </div>
   <div>
     <%= form.submit %>

@@ -1,6 +1,12 @@
 <% unless comment.archived? %>
   <li>
-    <strong>@<%= comment.commenter %>:</strong>
-    <%= comment.body %>
+    <span>
+      <strong>@<%= comment.commenter %>:</strong>
+      <%= comment.body %>
+      <%= link_to 'Destroy', [comment.article, comment], data: {
+        turbo_method: :delete,
+        turbo_confirm: 'Are you sure?'
+      } %>
+    </span>
   </li>
 <% end %>
