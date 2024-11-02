@@ -1,27 +1,25 @@
 <%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+  <div class="input-row">
+    <%= form.text_field :title, placeholder: :title %>
+    <ul>
+      <% article.errors.full_messages_for(:title).each do |message| %>
+        <li class="error-message">
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+  <div class="input-row">
+    <%= form.text_area :body, placeholder: :body, rows: 15 %>
+    <ul>
+      <% article.errors.full_messages_for(:body).each do |message| %>
+        <li class="error-message">
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <div>
-    <%= form.label :status %>
-    <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
-  </div>
-  <div>
+  <div class="mt-2">
     <%= form.submit %>
   </div>
 <% end %>

@@ -1,12 +1,16 @@
-<h1><%= @article.title %></h1>
-<p><%= @article.body %></p>
+<h1 class="title">
+  <%= @article.title %>
+</h1>
+<p class="body">
+  <%= @article.body %>
+</p>
 <div>
   <%= link_to 'All articles', articles_path %>
   <%= link_to 'Edit', edit_article_path(@article) %>
 </div>
-<h2>Comments</h2>
+<h2 class="section">Comments</h2>
+<%= render 'comments/form', article: @article %>
 <ul>
   <%= render @article.comments %>
 </ul>
-<h2>Add a comment:</h2>
-<%= render 'comments/form', article: @article %>
+<button class="btn-success"></button>
