@@ -2,11 +2,12 @@
 
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.public
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.public.find(params[:id])
+    @comments = Comment.where(article_id: @article.id, status: :public)
   end
 
   def new
@@ -15,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.status = :public
     if @article.save
       redirect_to @article
     else
@@ -37,13 +39,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
+    @article.update(status: :archived)
     redirect_to root_path, status: :see_other
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:title, :body)
   end
 end

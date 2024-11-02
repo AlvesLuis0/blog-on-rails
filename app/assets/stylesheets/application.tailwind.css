@@ -4,40 +4,36 @@
 
 @layer base {
   input[type=submit] {
-    @apply py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg
+    @apply py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg
   }
 
   input[type=text], textarea {
-    @apply my-2 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
+    @apply rounded-lg border-transparent appearance-none border w-full border-gray-300 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
   }
 
   form {
-    @apply w-full px-5 py-10 m-auto my-10 bg-white rounded-lg shadow
+    @apply w-full px-5 py-5 bg-white rounded-lg shadow-lg flex flex-col gap-y-2
+  }
+
+  a {
+    @apply text-indigo-600 underline
+  }
+
+  h1 {
+    @apply text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl text-center
+  }
+
+  h2 {
+    @apply text-2xl font-bold tracking-tight text-gray-900
   }
 }
 
 @layer components {
-  .title {
-    @apply text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl text-center
-  }
-
-  .subtitle {
-    @apply mt-6 text-xl/8 text-gray-700
-  }
-
-  .body {
-    @apply mt-6 text-xl/8 text-gray-700
-  }
-
-  .section {
-    @apply mt-6 mb-2 text-2xl font-bold tracking-tight text-gray-900
-  }
-
-  .input-row {
-    @apply grid gap-x-4 gap-y-1
-  }
-
   .error-message {
     @apply text-red-700
+  }
+
+  .links-box {
+    @apply flex gap-x-4 mt-4
   }
 }

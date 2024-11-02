@@ -1,16 +1,15 @@
 <h1 class="title">
   <%= @article.title %>
 </h1>
-<p class="body">
-  <%= @article.body %>
-</p>
-<div>
+<div class="links-box">
   <%= link_to 'All articles', articles_path %>
   <%= link_to 'Edit', edit_article_path(@article) %>
 </div>
-<h2 class="section">Comments</h2>
+<p class="body mt-4">
+  <%= @article.body %>
+</p>
+<h2 class="section mt-4">Comments</h2>
 <%= render 'comments/form', article: @article %>
-<ul>
-  <%= render @article.comments %>
-</ul>
-<button class="btn-success"></button>
+<div class="mt-4 mb-10 flex flex-col gap-y-2">
+  <%= render @comments %>
+</div>

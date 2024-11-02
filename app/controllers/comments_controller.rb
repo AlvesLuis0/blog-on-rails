@@ -2,21 +2,22 @@
 
 class CommentsController < ApplicationController
   def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    @article = Article.public.find(params[:article_id])
+    @comment = @article.comments.build(comment_params)
+    @comment.status = :public
+    @comment.save
     redirect_to @article
   end
 
   def destroy
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.find(params[:id])
-    @comment.update(status: 'archived')
-    redirect_to @article
+    @comment = Comment.find(params[:id])
+    @comment.update(status: :archived)
+    redirect_to article_path(params[:article_id])
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+    params.require(:comment).permit(:commenter, :body)
   end
 end

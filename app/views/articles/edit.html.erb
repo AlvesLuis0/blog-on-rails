@@ -1,9 +1,8 @@
 <h1>Edit Article</h1>
 <%= render 'form', article: @article %>
-<div>
-  <%= link_to 'All articles', articles_path %>
+<div class="links-box">
   <%= link_to 'Cancel', @article %>
-  <%= link_to 'Destroy', article_path(@article), data: {
+  <%= link_to 'Archive', article_path(@article), class: "text-red-700", data: {
     turbo_method: :delete,
     turbo_confirm: 'Are you sure?'
   } %>

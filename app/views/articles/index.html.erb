@@ -1,8 +1,8 @@
 <h1>Articles</h1>
-<p>Our blog has <%= Article.public_count %> articles and counting!</p>
-<ul>
-  <%= render @articles %>
-</ul>
-<div>
+<p class="text-center">Our blog has <%= Article.public_count %> articles and counting!</p>
+<div class="links-box">
   <%= link_to 'New article', new_article_path %>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-4">
+  <%= render @articles %>
 </div>
