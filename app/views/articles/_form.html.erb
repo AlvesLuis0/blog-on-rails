@@ -1,19 +1,11 @@
 <%= form_with model: article do |form| %>
   <div>
     <%= form.text_field :title, placeholder: :title %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div class="error-message">
-        <%= message %>
-      </div>
-    <% end %>
+    <%= render 'shared/error_message', { entity: article, field: :title } %>
   </div>
   <div>
     <%= form.text_area :body, placeholder: :body, rows: 15 %>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div class="error-message">
-        <%= message %>
-      </div>
-    <% end %>
+    <%= render 'shared/error_message', { entity: article, field: :body } %>
   </div>
   <div>
     <%= form.submit %>
