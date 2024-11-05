@@ -25,6 +25,10 @@
         <%= link_to 'New article', new_article_path, class: 'block mt-4 mr-10 text-blue-900 lg:inline-block lg:mt-0 hover:text-indigo-600 no-underline' %>
       </div>
     </nav>
+    <div>
+      <p class="notice text-yellow-700"><%= notice %></p>
+      <p class="alert error-message"><%= alert %></p>
+    </div>
     <main class="container mx-auto mt-28 px-40">
       <%= yield %>
     </main>
