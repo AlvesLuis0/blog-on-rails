@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: %i[new create edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
     @articles = Article.all
