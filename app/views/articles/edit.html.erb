@@ -2,7 +2,7 @@
 <%= render 'form', article: @article %>
 <div class="links-box">
   <%= link_to 'Cancel', @article %>
-  <%= link_to 'Archive', article_path(@article), class: "text-red-700", data: {
+  <%= link_to 'Delete', article_path(@article), class: "text-red-700", data: {
     turbo_method: :delete,
     turbo_confirm: 'Are you sure?'
   } %>

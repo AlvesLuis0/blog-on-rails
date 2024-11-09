@@ -2,7 +2,9 @@
   <%= @article.title %>
 </h1>
 <div class="links-box">
-  <%= link_to 'Edit', edit_article_path(@article) %>
+  <% if @article.user == current_user %>
+    <%= link_to 'Edit', edit_article_path(@article) %>
+  <% end %>
 </div>
 <p class="body mt-4">
   <%= @article.content %>

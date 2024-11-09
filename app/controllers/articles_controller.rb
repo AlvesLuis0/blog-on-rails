@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :find_article, except: %i[index new create]
+  before_action :verify_author, only: %i[edit update destroy]
 
   def index
     @articles = Article.all
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
+  def show; end
 
   def new
     @article = Article.new
   end
 
   def create
-    @article = current_user.articles.build(article_params)
+    @article = Article.new(article_params)
     if @article.save
       redirect_to @article
     else
@@ -24,12 +24,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       redirect_to @article
     else
@@ -38,14 +35,23 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to root_path, status: :see_other
   end
 
   private
 
+  def find_article
+    @article = Article.find(params[:id])
+  end
+
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content).merge(user: current_user)
+  end
+
+  def verify_author
+    return if @article.user == current_user
+
+    redirect_to root_path, status: :forbidden
   end
 end

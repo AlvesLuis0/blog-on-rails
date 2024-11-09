@@ -4,9 +4,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @article = current_user.articles.find(params[:article_id])
+    @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
-    @comment.user = current_user
     @comment.save
     redirect_to @article
   end
@@ -20,6 +19,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content).merge(user: current_user)
   end
 end

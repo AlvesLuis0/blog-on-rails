@@ -1,6 +1,7 @@
 <%= form_with model: [article, Comment.new] do |form| %>
   <div>
     <%= form.text_area :content, placeholder: :content %>
+    <%= render 'shared/error_message', { entity: article, field: :content } %>
   </div>
   <div>
     <%= form.submit %>
