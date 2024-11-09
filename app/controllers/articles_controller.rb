@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!, except: %i[new create edit update destroy]
 
   def index
-    @articles = Article.public
+    @articles = Article.all
   end
 
   def show
-    @article = Article.public.find(params[:id])
-    @comments = Comment.where(article_id: @article.id, status: :public)
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -17,8 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.status = :public
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to @article
     else
@@ -41,13 +39,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    @article.update(status: :archived)
+    @article.destroy
     redirect_to root_path, status: :see_other
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :content)
   end
 end

@@ -4,8 +4,8 @@
     <%= render 'shared/error_message', { entity: article, field: :title } %>
   </div>
   <div>
-    <%= form.text_area :body, placeholder: :body, rows: 15 %>
-    <%= render 'shared/error_message', { entity: article, field: :body } %>
+    <%= form.text_area :content, placeholder: :content, rows: 15 %>
+    <%= render 'shared/error_message', { entity: article, field: :content } %>
   </div>
   <div>
     <%= form.submit %>

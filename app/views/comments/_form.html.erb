@@ -1,9 +1,6 @@
-<%= form_with model: [article, article.comments.build] do |form| %>
+<%= form_with model: [article, Comment.new] do |form| %>
   <div>
-    <%= form.text_field :commenter, placeholder: :commenter %>
-  </div>
-  <div>
-    <%= form.text_area :body, placeholder: :body %>
+    <%= form.text_area :content, placeholder: :content %>
   </div>
   <div>
     <%= form.submit %>

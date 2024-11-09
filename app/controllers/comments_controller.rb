@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    @article = Article.public.find(params[:article_id])
+    @article = current_user.articles.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
-    @comment.status = :public
+    @comment.user = current_user
     @comment.save
     redirect_to @article
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.update(status: :archived)
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy
     redirect_to article_path(params[:article_id])
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body)
+    params.require(:comment).permit(:content)
   end
 end

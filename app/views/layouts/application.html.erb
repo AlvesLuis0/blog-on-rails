@@ -22,7 +22,11 @@
         <%= link_to 'Home', root_path, class: 'block mt-4 mr-10 text-blue-900 lg:inline-block lg:mt-0 hover:text-indigo-600 no-underline' %>
       </div>
       <div class="hidden w-full navbar-menu lg:order-3 lg:block lg:w-2/5 lg:text-right">
-        <%= link_to 'New article', new_article_path, class: 'block mt-4 mr-10 text-blue-900 lg:inline-block lg:mt-0 hover:text-indigo-600 no-underline' %>
+        <% if user_signed_in? %>
+          <%= link_to 'New article', new_article_path, class: 'block mt-4 mr-10 text-blue-900 lg:inline-block lg:mt-0 hover:text-indigo-600 no-underline' %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path, class: 'block mt-4 mr-10 text-blue-900 lg:inline-block lg:mt-0 hover:text-indigo-600 no-underline' %>
+        <% end %>
       </div>
     </nav>
     <div>
